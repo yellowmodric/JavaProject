@@ -17,12 +17,12 @@ public class BrickWriter {
         for (Brick brick : box.getBricks()) {
             int width = brick.widthOf();
             int height = brick.heightOf();
-            
+
             if (!brick.isDestroyed()) {
-                g.setColor(bricks_color);
+                g.setColor(brick.getBrickColor());
                 g.fillRect(brick.xPosition(), brick.yPosition(), width, height);
             }
         }
     }
-    
+
 }

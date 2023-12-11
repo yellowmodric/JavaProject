@@ -14,7 +14,7 @@ public class BoxWriter {
         int h = box.heightOf();
         g.setColor(Color.black);
         g.fillRect(0, 0, w, h);
-        
+
     }
-    
+
 }
