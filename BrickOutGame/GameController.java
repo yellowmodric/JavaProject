@@ -14,39 +14,12 @@ public class GameController extends JPanel implements KeyListener {
 	private double time_unit = 1;
 	private UserManage um;
 
-	public GameController(MovingBall b, AnimationWriter w, MovingBar r, Box x, UserManage u, String difficulty) {
+	public GameController(MovingBall b, AnimationWriter w, MovingBar r, Box x, UserManage u) {
 		ball = b;
 		writer = w;
 		bar = r;
 		box = x;
 		um = u;
-
-		// 난이도에 따른 속도 조절 - 공이 움직이는 속도, 공의 크기, 막대바의 너비, 막대바가 움직이는 속도로 난이도 조절
-		switch (difficulty) {
-			case "easy":
-				ball.setVelocity(5, 2);
-				bar.setSpeed(45);
-				ball.setRadius(11);
-				bar.setBar(150);
-				break;
-			case "normal":
-				ball.setVelocity(6, 3);
-				bar.setSpeed(40);
-				ball.setRadius(9);
-				bar.setBar(120);
-				break;
-			case "hard":
-				ball.setVelocity(6, 4);
-				bar.setSpeed(35);
-				ball.setRadius(7);
-				bar.setBar(100);
-				break;
-			default:
-				ball.setVelocity(12, 6);
-				bar.setSpeed(25);
-				ball.setRadius(15);
-				break;
-		}
 
 		writer.addKeyListener(this);
 		writer.setFocusable(true);
@@ -102,8 +75,26 @@ public class GameController extends JPanel implements KeyListener {
 		int painting_delay = 10;
 
 		String input = JOptionPane.showInputDialog("사용자 이름을 입력하세요.");
-		long startTime = System.currentTimeMillis() / 1000;
-		um.setUser(input, startTime);
+		if (input != null && !input.trim().isEmpty()) {
+			long startTime = System.currentTimeMillis() / 1000;
+			um.setUser(input, startTime);
+		}
+
+		String[] options = { "Easy", "Normal", "Hard" };
+		String difficulty = (String) JOptionPane.showInputDialog(null,
+				"난이도를 선택하세요.", "Difficulty",
+				JOptionPane.QUESTION_MESSAGE, null,
+				options, options[0]);
+
+		if (difficulty != null) {
+			if (options[0] == difficulty) {
+				setDifficulty("easy");
+			} else if (options[1] == difficulty) {
+				setDifficulty("normal");
+			} else {
+				setDifficulty("hard");
+			}
+		}
 
 		while (true) {
 			delay(painting_delay);
@@ -148,6 +139,36 @@ public class GameController extends JPanel implements KeyListener {
 		try {
 			Thread.sleep(how_long);
 		} catch (InterruptedException e) {
+		}
+	}
+
+	public void setDifficulty(String difficulty) {
+		// 난이도에 따른 속도 조절 - 공이 움직이는 속도, 공의 크기, 막대바의 너비, 막대바가 움직이는 속도로 난이도 조절
+		switch (difficulty) {
+			case "easy":
+				ball.setVelocity(5, 2);
+				bar.setSpeed(45);
+				ball.setRadius(11);
+				bar.setBar(150);
+				break;
+			case "normal":
+				ball.setVelocity(6, 3);
+				bar.setSpeed(40);
+				ball.setRadius(9);
+				bar.setBar(120);
+				break;
+			case "hard":
+				ball.setVelocity(6, 4);
+				bar.setSpeed(35);
+				ball.setRadius(7);
+				bar.setBar(90);
+				break;
+			default:
+				ball.setVelocity(5, 2);
+				bar.setSpeed(45);
+				ball.setRadius(11);
+				bar.setBar(150);
+				break;
 		}
 	}
 }

@@ -23,7 +23,7 @@ public class GameManager {
 
 			UserManage um = new UserManage();
 
-			GameController move = new GameController(ball, aniwriter, bar, box, um, "easy");
+			GameController move = new GameController(ball, aniwriter, bar, box, um);
 
 			Thread bounceball = new Thread(() -> {
 				move.runAnimation();
