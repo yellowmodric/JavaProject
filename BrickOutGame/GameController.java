@@ -75,16 +75,28 @@ public class GameController extends JPanel implements KeyListener {
 		int painting_delay = 10;
 
 		String input = JOptionPane.showInputDialog("사용자 이름을 입력하세요.");
-		if (input != null && !input.trim().isEmpty()) {
-			long startTime = System.currentTimeMillis() / 1000;
-			um.setUser(input, startTime);
+		if (input == null) {
+			System.exit(0);
 		}
+		while (input.trim().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "이름을 입력해야 합니다.");
+			input = JOptionPane.showInputDialog("사용자 이름을 입력하세요.");
+			if (input == null) {
+				System.exit(0);
+			}
+		}
+		
+		long startTime = System.currentTimeMillis() / 1000;
+		um.setUser(input, startTime);
 
 		String[] options = { "Easy", "Normal", "Hard" };
 		String difficulty = (String) JOptionPane.showInputDialog(null,
 				"난이도를 선택하세요.", "Difficulty",
 				JOptionPane.QUESTION_MESSAGE, null,
 				options, options[0]);
+		if (difficulty == null) {
+			System.exit(0);
+		}
 
 		if (difficulty != null) {
 			if (options[0] == difficulty) {
