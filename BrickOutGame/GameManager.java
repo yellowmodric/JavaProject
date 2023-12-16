@@ -13,7 +13,7 @@ public class GameManager {
 			Box box = new Box(400, 600);
 
 			MovingBar bar = new MovingBar(160, 500, box);
-			MovingBall ball = new MovingBall(300, 400, 5, box, bar);
+			MovingBall ball = new MovingBall(300, 300, 5, box, bar);
 
 			BallWriter ballwriter = new BallWriter(ball, Color.white);
 			BoxWriter boxwriter = new BoxWriter(box);
