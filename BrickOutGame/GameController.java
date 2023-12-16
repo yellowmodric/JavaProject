@@ -52,7 +52,7 @@ public class GameController extends JPanel implements KeyListener {
 
 	private void restartGame() {
 		box.resetBricks(); // 새로운 벽돌 초기화
-		ball.resetPosition(300, 400);
+		ball.resetPosition(300, 300);
 		bar.resetPosition(160, 500);
 
 		runAnimation();
