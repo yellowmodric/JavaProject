@@ -1,15 +1,12 @@
 package movingball;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class BrickWriter {
     private Box box;
-    private Color bricks_color;
-
-    public BrickWriter(Box b, Color c) {
+    
+    public BrickWriter(Box b) {
         box = b;
-        bricks_color = c;
     }
 
     public void paint(Graphics g) {
