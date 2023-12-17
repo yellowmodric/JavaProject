@@ -2,7 +2,6 @@ package movingball;
 
 import java.awt.*;
 import javax.swing.SwingUtilities;
-import java.awt.event.*;
 
 public class GameManager {
 
@@ -18,7 +17,7 @@ public class GameManager {
 			BallWriter ballwriter = new BallWriter(ball, Color.white);
 			BoxWriter boxwriter = new BoxWriter(box);
 			BarWriter barwriter = new BarWriter(bar, Color.white);
-			BrickWriter brickwriter = new BrickWriter(box, Color.white);
+			BrickWriter brickwriter = new BrickWriter(box);
 			AnimationWriter aniwriter = new AnimationWriter(boxwriter, ballwriter, barwriter, brickwriter, 400, 600);
 
 			UserManage um = new UserManage();
